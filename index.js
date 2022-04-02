@@ -33,7 +33,9 @@ app.engine('ejs', ejsMate);
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+//use static files in app.js
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'partials')));
 //
 const dbURL = process.env.dbURL || 'mongodb://localhost:27017/hireDB';
 const secret = process.env.secret;
