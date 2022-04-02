@@ -36,8 +36,8 @@ app.use(methodOverride('_method'))
 //use static files in app.js
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'partials')));
-//
-const dbURL = process.env.dbURL || 'mongodb://localhost:27017/hireDB';
+//'mongodb://localhost:27017/hireDB'
+const dbURL = process.env.dbURL;
 const secret = process.env.secret;
 //
 mongoose.connect(dbURL, {
@@ -59,7 +59,7 @@ store.on("error", function (e) {
 })
 
 const sessionConfig = {
-    store,
+    store: store,
     secret: secret,
     resave: false,
     saveUninitialized: true,
