@@ -1,0 +1,46 @@
+<% layout('layouts/boilerPlate') %>
+
+    <center>
+        <h1>Opportunities</h1>
+    </center>
+    <div class="row d-flex">
+        <% for(let role of roles.reverse()){ %>
+            <div class="col-6">
+                <div class="card shadow p-3 mb-5 bg-white rounded border border-warning">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%=role.cName%>
+                        </h5>
+                        <p class="card-text">
+                            <%=role.aboutC%>
+                        </p>
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+
+                            <%=role.role%>
+                        </li>
+                        <li class="list-group-item">
+                            <b>Skills required: </b>
+                            <%=role.skills%>
+                        </li>
+
+                    </ul>
+                    <div class="card-body">
+                        <!-- <a href="/allOpports/<%=role._id%>/edit" class="card-link">Edit</a>
+                        <form class="d-inline" action="/allOpports/<%=role._id%>?_method=DELETE" method="post">
+                            <button class="btn btn-danger">Delete</button>
+                        </form> -->
+                        <a class="btn btn-success" href="/allOpports/<%=role._id%>">
+                            Details
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+
+            <%}%>
+
+    </div>

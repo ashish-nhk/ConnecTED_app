@@ -1,0 +1,53 @@
+<% layout('layouts/boilerPlate') %>
+    <div class="row">
+        <div class="col-6 offset-3 mb-3">
+            <h1 class="text-center">
+                <%=role.cName%>
+            </h1>
+            <form action="/allOpports/<%=role._id%>?_method=PUT" method="post" class="validated-form" novalidate>
+
+                <div class="mb-2">
+                    <label class="form-label" for="role">Job Role</label>
+                    <input class="form-control" type="text" id="role" name="role" placeholder="<%=role.role%>"
+                        value="<%=role.role%>" required>
+
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="skills">Skills requirements</label>
+                    <input class="form-control" type="text" id="skills" name="skills" value="<%=role.skills%>"
+                        placeholder="" required>
+
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="experience">Experience(in years)</label>
+                    <select class="form-control" name="experience" id="experience">
+                        <option value="Fresher">Fresher</option>
+                        <option value="0-1"> 0-1 </option>
+                        <option value="1-2"> 1-2 </option>
+                        <option value="2-5"> 2-5 </option>
+                        <option value="5+">5+</option>
+                    </select>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label" for="lastDate">Last Date to apply</label>
+                    <input type="date" name="lastDate" id="lastDate" class="form-control" value="<%=role.lastDate%>">
+                </div>
+
+
+
+                <div class="mb-2">
+                    <label class="form-label" for="description">Description</label>
+                    <textarea class="form-control" type="textarea" name="description" id="description" placeholder=""
+                        required> <%=role.description%></textarea>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <button class="btn btn-success" type="submit">Submit</button>
+
+                <a class="btn btn-danger" href="/allOpports">Cancel</a>
+
+            </form>
+
+        </div>
+    </div>
