@@ -45,7 +45,7 @@ router.post('/', isLoggedIn, catchAsync(async (req, res, next) => {
     req.flash('success', 'Successfully posted a role!');
     res.redirect(`allOpports/${role._id}`);
 }))
-router.get('/:id', catchAsync(async (req, res) => {
+router.get('/:id', isLoggedIn, catchAsync(async (req, res) => {
     const role = await (await Role.findById(req.params.id).populate('reviews').populate('author'));
     //used to populate author in review array to extract author value
     for (let review in role.reviews) {

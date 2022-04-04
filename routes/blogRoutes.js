@@ -5,9 +5,9 @@ const ExpressError = require('../utils/ExpressError');
 const Review = require('../models/review');
 const flash = require('connect-flash');
 const Blog = require('../models/blogs');
+const { isLoggedIn } = require('../middleware');
 
-
-router.get('/blogs', async (req, res) => {
+router.get('/blogs', isLoggedIn, async (req, res) => {
     const blogs = await Blog.find({}).populate('author');
     for (let blog in blogs) {
         const rev = blogs[blog];
@@ -18,7 +18,7 @@ router.get('/blogs', async (req, res) => {
     res.render('blogs', { blogs });
 });
 
-const isLoggedIn = (req, res, next) => {
+const isLogged = (req, res, next) => {
     if (!req.isAuthenticated()) {
         req.flash('error', 'You must be signed in!');
         req.session.returnTo = '/blogs';
@@ -26,7 +26,7 @@ const isLoggedIn = (req, res, next) => {
     }
     next();
 }
-router.post('/blogs', isLoggedIn, catchAsync(async (req, res) => {
+router.post('/blogs', isLogged, catchAsync(async (req, res) => {
     const { description } = req.body;
     const date = new Date(Date.now()).toString().slice(4, 24);
     const post = new Blog({ description: description, date: date });
