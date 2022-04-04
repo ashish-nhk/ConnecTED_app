@@ -1,0 +1,57 @@
+<% layout('layouts/boilerPlate') %>
+
+    <% if(currentUser){ %>
+        <form action="/blogs" method="post" class="validated-form mb-3" novalidate>
+
+            <div class="mb-1">
+                <textarea class=" form-control border border-primary" style="white-space: pre-wrap;"
+                    oninput="auto_grow(this)" placeholder="Add post" name="description" id="description" cols=""
+                    rows="1" required></textarea>
+
+            </div>
+            <div class="d-flex flex-row-reverse">
+                <button class="btn btn-secondary text-white">Post</button>
+            </div>
+
+        </form>
+        <% } %>
+            <% for(let blog of blogs.reverse()) {%>
+                <div class="card mb-3 bg-light">
+                    <div class="row m-1">
+                        <div style="white-space: pre-line;">
+                            <%= blog.description %>
+                        </div>
+
+                        <div class="d-flex justify-content-between">
+                            <div>---<b> <i>
+                                        <% if(currentUser && blog.author.equals(currentUser._id)){ %>
+                                            you
+                                            <% }else{ %>
+                                                <%= blog.author.username %>
+                                                    <% } %>
+
+
+                                    </i></b>
+                                at
+                                <%= blog.date %>
+
+                            </div>
+                            <div>
+                                <% if(currentUser && blog.author.equals(currentUser._id)) {%>
+                                    <form action="/blogs/<%=blog._id %>?_method=DELETE" method="post">
+                                        <button class="btn btn-sm btn-danger">Delete</button>
+                                    </form>
+                                    <% }%>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <% } %>
+
+                    <script>function auto_grow(element) {
+                            element.style.height = "5px";
+                            element.style.height = (element.scrollHeight) + "px";
+                        }</script>

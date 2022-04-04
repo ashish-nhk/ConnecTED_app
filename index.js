@@ -26,7 +26,7 @@ const MongoDBStore = require("connect-mongo");
 const allOpportRoutes = require('./routes/allOpports');
 const reviewRoutes = require('./routes/reviews');
 const userRoutes = require('./routes/user');
-
+const blogRoutes = require('./routes/blogRoutes')
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
@@ -89,6 +89,7 @@ app.use(function (req, res, next) {
 })
 
 app.use('/', userRoutes);
+app.use('/', blogRoutes);
 app.use('/allOpports', allOpportRoutes);
 app.use('/allOpports/:id/reviews', reviewRoutes);
 
