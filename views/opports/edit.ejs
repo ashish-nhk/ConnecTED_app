@@ -37,7 +37,8 @@
 
                 <div class="mb-2">
                     <label class="form-label" for="description">Description</label>
-                    <textarea class="form-control" type="textarea" name="description" id="description" placeholder=""
+                    <textarea class="form-control" oninput="auto_grow(this)" style="white-space: pre-wrap;"
+                        type="textarea" name="description" id="description" placeholder=""
                         required> <%=role.description%></textarea>
                     <div class="valid-feedback">
                         Looks good!

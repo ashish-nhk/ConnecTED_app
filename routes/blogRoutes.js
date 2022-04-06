@@ -13,7 +13,7 @@ router.get('/blogs', isLoggedIn, async (req, res) => {
         const rev = blogs[blog];
         await (rev.populate('author'));
     }
-    // console.log(blogs);
+    //console.log(blogs);
 
     res.render('blogs', { blogs });
 });
